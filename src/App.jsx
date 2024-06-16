@@ -1,14 +1,36 @@
-import React, { useEffect , useState} from 'react'
-import { MatchContextProvider } from './context/matchContext.js'
-import {BrowserRouter as Router , Routes , Route} from 'react-router-dom'
-import Home from './pages/Home/Home.jsx'
-import NavBar from './components/NavBar.jsx'
-import MatchInfo from './pages/MatchInfo/MatchInfo.jsx'
-import LiveScore from './pages/LiveScore/LiveScore.jsx'
+import React, { useEffect, useState } from 'react';
+import { MatchContextProvider } from './context/matchContext.js';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Home from './pages/Home/Home.jsx';
+import NavBar from './components/NavBar.jsx';
+import MatchInfo from './pages/MatchInfo/MatchInfo.jsx';
+import LiveScore from './pages/LiveScore/LiveScore.jsx';
+
+// async function fetchMatchData() {
+//   const url = 'https://crickbuzz-official-apis.p.rapidapi.com/series/7476';
+//   const options = {
+//     method: 'GET',
+//     headers: {
+//       'x-rapidapi-key': 'df3d904776mshd07077557d71243p17a76ajsnbdb4d5f83dfa',
+//       'x-rapidapi-host': 'crickbuzz-official-apis.p.rapidapi.com',
+//     },
+//   };
+
+//   try {
+//     const response = await fetch(url, options);
+//     const result = await response.json();
+//     return result;
+//   } catch (error) {
+//     console.error(error);
+//     return null;
+//   }
+// }
 
 function App() {
- const [seriesData , setSeriesData] = useState([])
- const [currMatchInfo , setCurrMatchInfo]=useState([])
+  const [seriesData, setSeriesData] = useState([]);
+  const [currMatchInfo, setCurrMatchInfo] = useState([]);
+
+
   const data={
     "matchDetails": [
         {
@@ -2689,34 +2711,35 @@ function App() {
     ]
 }
 
-  useEffect(()=>{
-    //matchInfo();
+  useEffect(() => {
+    // async function loadMatchData() {
+    //   const data = await fetchMatchData();
+    //   if (data) {
+    //     setSeriesData(data);
+    //   }
+    // }
+
+    // loadMatchData();
     setSeriesData(data)
-    
-  },[])
+  }, []);
 
-
-  const matchDetails = data.matchDetails
-
-  // console.log(seriesData);
-  // console.log(matchDetails[0].matchDetailsMap);
+  console.log(seriesData);
   console.log(currMatchInfo);
-  
-  
+
   return (
-    <MatchContextProvider value={{seriesData , currMatchInfo , setCurrMatchInfo }}>
-      <div className='min-w-full min-h-screen bg-slate-800 '>
+    <MatchContextProvider value={{ seriesData, currMatchInfo, setCurrMatchInfo }}>
+      <div className="min-w-full min-h-screen bg-slate-800">
         <Router>
-        <NavBar />
-            <Routes >
-                  <Route path='/' element={<Home/>} />
-                  <Route path='/livescore' element={<LiveScore/>} />
-                  <Route path='/matchinfo' element={<MatchInfo/>} />
-            </Routes>
+          <NavBar />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/livescore" element={<LiveScore />} />
+            <Route path="/matchinfo" element={<MatchInfo />} />
+          </Routes>
         </Router>
       </div>
     </MatchContextProvider>
-  )
+  );
 }
 
-export default App
+export default App;
