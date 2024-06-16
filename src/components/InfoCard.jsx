@@ -8,20 +8,20 @@ function InfoCard() {
 //   console.log("info : ", matchDetails[0]?.matchDetailsMap?.match[0].matchInfo);
 
   return (
-    <div className="flex flex-wrap items-center justify-center">
+    <div className="flex flex-wrap items-center justify-center ">
       {matchDetails.map((item) => (
         <div
           key={item.matchDetailsMap?.key}
-          className="text-center bg-green-400 w-1/4  min-h-80 border-2 border-black
-        text-white font-serif font-semibold text-2xl rounded-lg shadow-lg m-3 p-3
+          className="text-center bg-green-400 w-1/4  min-h-[32rem] border-2 border-black
+        text-blue-800 font-serif font-medium text-xl rounded-lg shadow-lg m-3 p-5
     "
         >
-          <span>{item.matchDetailsMap?.key}</span>
+          <span >{item.matchDetailsMap?.key}</span>
           <div>
             {item.matchDetailsMap?.match?.map((info) => (
-              <div key={info.matchInfo?.matchId}>
+              <div key={info.matchInfo?.matchId} className="m-1">
                 <h3>{info.matchInfo?.matchDesc}</h3>
-                <h4>{`${info.matchInfo?.team1?.teamSName} v/s ${info.matchInfo?.team2?.teamSName}`}</h4>
+                <h4 className="text-white">{`${info.matchInfo?.team1?.teamSName} v/s ${info.matchInfo?.team2?.teamSName}`}</h4>
                 <h4>{info.matchInfo?.status}</h4>
                 <Link to={'/matchinfo'}>
                 <button className="bg-slate-700 hover:bg-slate-800 text-white text-sm rounded-md p-2 " onClick={()=>{setCurrMatchInfo(info)
